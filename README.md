@@ -6,8 +6,8 @@ Use Datadog directly in Cursor. Query logs, metrics, traces, dashboards, and mor
 
 ## What this plugin does
 
-1. Connects Cursor to [Datadog](https://docs.datadoghq.com/bits_ai/mcp_server/) automatically — no manual registration needed.
-2. Configures access to Datadog: set domain, switch organization, enable/disable toolsets — all through `/ddconfig` or, after the first use of the command, natural conversation.
+The Cursor Plugin connects Cursor to [Datadog](https://docs.datadoghq.com/bits_ai/mcp_server/) automatically — no manual registration needed.
+
 
 Authentication is handled via OAuth in your browser. Configuration changes are applied without restarting Cursor.
 
@@ -17,11 +17,10 @@ Through the Datadog MCP server, you can query logs, metrics, traces, dashboards,
 
 - [Datadog](https://www.datadoghq.com/) account with the `MCP Read` and `MCP Write` permissions.
 - [Cursor](https://cursor.com/) IDE (v2.6.0+)
-- [Node.js](https://nodejs.org/en) (v22.19.0+) — must be available on your system PATH.
 
 ## Quick Start
 
-> If you have the Datadog MCP server registered directly (e.g., in `.cursor/mcp.json` or via MCP settings), disable or remove it first. This plugin provides the MCP server — having both active causes duplicate tools and conflicts.
+> If you have the Datadog MCP server registered directly (e.g., in `.cursor/mcp.json` or via MCP settings), you *must* disable or remove it first. This plugin provides the MCP server — having both active causes duplicate tools and conflicts.
 
 ### Install the Plugin
 
@@ -32,24 +31,18 @@ Add the marketplace and install the plugin from Cursor Settings → Plugins:
 3. Install the `datadog` plugin
 4. You may need to restart Cursor after installing.
 
-When Cursor is configured, the plugin opens your browser for Datadog OAuth using the `app.datadoghq.com` domain. Complete the sign-in to connect. See this troubleshooting [section](#wrong-datadog-domain-on-first-connection) if your organization uses a different site (US3, EU1, etc.) or a custom domain.
+When Cursor is configured, the plugin can use the `datadog-mcp-setup` skill to set the right environment variables for your `mcp.json` file. You can also directly modify the `mcp.json` to modify the file with the following urls based on the datacenter your organization is using the following table.
 
-### Configure Datadog
+| Region | MCP URL                                                   |
+|--------|-----------------------------------------------------------|
+| us1    | https://mcp.datadoghq.com/api/unstable/mcp-server/mcp |
+| us3    | https://mcp.us3.datadoghq.com/api/unstable/mcp-server/mcp |
+| us5    | https://mcp.us5.datadoghq.com/api/unstable/mcp-server/mcp |
+| eu1    | https://mcp.eu1.datadoghq.com/api/unstable/mcp-server/mcp |
+| ap1    | https://mcp.ap1.datadoghq.com/api/unstable/mcp-server/mcp |
+| ap2    | https://mcp.ap2.datadoghq.com/api/unstable/mcp-server/mcp |
 
-From Cursor, run the `/ddconfig` command:
 
-```
-/ddconfig
-```
-
-This opens an interactive menu with options based on your current connection state:
-
-- **Domain** — Select your Datadog site (US1, US3, EU1, etc.)
-- **Organization** — Switch between your organizations
-- **Toolsets** — Enable or disable groups of Datadog features (like alerting and synthetics)
-- **Reset** — Clear all settings and connections to start fresh
-
-If the plugin is not connected (wrong domain, expired session, first use), the menu shows recovery options and guidance. The plugin will open your browser for authentication when needed.
 
 ## Using the Plugin
 
@@ -132,20 +125,9 @@ At the moment, the plugin requires opening a browser on the machine where it is 
 
 To remove the plugin, remove the plugin from Cursor Settings → Plugins, then restart Cursor.
 
-### The plugin shows an error on startup
-
-Verify that Node.js v22.19.0 or later is installed (`node --version`).
-
-### The Datadog MCP server provided by the plugin shows an error
-
-Run `/ddconfig` and select "Connect" to retry, or "Domain" to enter the correct domain for your organization - your browser will open for OAuth authentication. If the problem persists, try resetting the plugin (`/ddconfig` → Reset), then restart Cursor.
-
 ### Wrong Datadog domain on first connection
 
-The plugin defaults to `app.datadoghq.com` (US1). If you see the wrong sign-in page or authentication fails because your organization is on a different site:
-
-- **Before launching:** Set the `DD_OAUTH_DOMAIN` environment variable to your domain (e.g., `DD_OAUTH_DOMAIN=us3.datadoghq.com`).
-- **After launching:** Run `/ddconfig` → Domain to select your site. This works even when the plugin is not connected — the recovery menu includes the Domain option.
+The plugin defaults to `app.datadoghq.com` (US1). If you see the wrong sign-in page or authentication fails because your organization is on a different site. Manually set the URL on `mcp.json` or run the `datadog-mcp-setup` skill to create an environment variable to set the correct URL. 
 
 ### Multiple browser tabs open during sign-in
 
@@ -155,7 +137,7 @@ If this happens, close all Cursor windows except one, restart it, and sign in. O
 
 ### Not signed-in to Datadog
 
-The plugin opens your browser to sign in to Datadog when Cursor starts. If you missed it or the session expired, run `/ddconfig` and select "Connect" to retry. You can also restart the Datadog MCP server from Cursor's MCP settings.
+The plugin opens your browser to sign in to Datadog when Cursor starts. If you missed it or the session expired, go to `Tools & MCP` in Cursor Settings and re-authenticate.
 
 ### OAuth callback port conflict
 
@@ -165,20 +147,12 @@ The plugin tries several localhost ports for the OAuth callback (`40100`, `40101
 DD_OAUTH_PORT=8080
 ```
 
-### Something not working
-
-Run `/ddconfig` — the menu adapts to your connection state and shows the options that will help, like, for example:
-
-- **Connect** — retry authentication
-- **Domain** — switch to the correct Datadog site
-- **Reset** — clear all settings and start fresh (you will need to sign in again)
 
 ## Privacy & Security
 
 - Connection details are encrypted and stored locally on your machine
 - No credentials are sent to the AI model provider
 - Connections are made directly to your Datadog instance
-- You can reset the plugin anytime via `/ddconfig` to clear all stored data
 
 ### Data Collection
 
@@ -201,3 +175,4 @@ This plugin provides the Datadog MCP Server which connects Cursor to your Datado
 For issues or questions:
 
 - [Datadog MCP Server Documentation](https://docs.datadoghq.com/bits_ai/mcp_server/)
+- Post on #datadog-ai-for-developers in the [Datadog Public Slack](https://chat.datadoghq.com/)
