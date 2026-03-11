@@ -31,16 +31,18 @@ Add the marketplace and install the plugin from Cursor Settings → Plugins:
 3. Install the `datadog` plugin
 4. You may need to restart Cursor after installing.
 
-When Cursor is configured, the plugin can use the `datadog-mcp-setup` skill to set the right environment variables for your `mcp.json` file. You can also directly modify the `mcp.json` to modify the file with the following urls based on the datacenter your organization is using the following table.
+The plugin expects MCP config like the repo’s [mcp.json](https://github.com/datadog-labs/cursor-plugin/blob/main/mcp.json), which uses the `DD_MCP_DOMAIN` environment variable for the MCP hostname (e.g. `mcp.datadoghq.com` for us1, `mcp.us3.datadoghq.com` for us3). The same config works for all regions when `DD_MCP_DOMAIN` is set.
 
-| Region | MCP URL                                                   |
-|--------|-----------------------------------------------------------|
-| us1    | https://mcp.datadoghq.com/api/unstable/mcp-server/mcp |
-| us3    | https://mcp.us3.datadoghq.com/api/unstable/mcp-server/mcp |
-| us5    | https://mcp.us5.datadoghq.com/api/unstable/mcp-server/mcp |
-| eu1    | https://mcp.eu1.datadoghq.com/api/unstable/mcp-server/mcp |
-| ap1    | https://mcp.ap1.datadoghq.com/api/unstable/mcp-server/mcp |
-| ap2    | https://mcp.ap2.datadoghq.com/api/unstable/mcp-server/mcp |
+A skill is provided to help you pick the correct domain for your datacenter — run the `datadog-mcp-setup` skill to set `DD_MCP_DOMAIN` so you don’t have to edit URLs by hand. The MCP endpoint is controlled by `DD_MCP_DOMAIN` (domain only, not full URL); default is `mcp.datadoghq.com` (us1). For your region, see the table below.
+
+| Region | MCP domain (`DD_MCP_DOMAIN`)   |
+|--------|--------------------------------|
+| us1    | mcp.datadoghq.com              |
+| us3    | mcp.us3.datadoghq.com          |
+| us5    | mcp.us5.datadoghq.com          |
+| eu1    | mcp.eu1.datadoghq.com          |
+| ap1    | mcp.ap1.datadoghq.com          |
+| ap2    | mcp.ap2.datadoghq.com          |
 
 
 
@@ -127,7 +129,7 @@ To remove the plugin, remove the plugin from Cursor Settings → Plugins, then r
 
 ### Wrong Datadog domain on first connection
 
-The plugin defaults to `app.datadoghq.com` (US1). If you see the wrong sign-in page or authentication fails because your organization is on a different site. Manually set the URL on `mcp.json` or run the `datadog-mcp-setup` skill to create an environment variable to set the correct URL. 
+The plugin defaults to `app.datadoghq.com` (US1). If you see the wrong sign-in page or authentication fails because your organization is on a different site, run the `datadog-mcp-setup` skill to set the correct domain, or set `DD_MCP_DOMAIN` (e.g. `mcp.us3.datadoghq.com`) manually. 
 
 ### Multiple browser tabs open during sign-in
 
