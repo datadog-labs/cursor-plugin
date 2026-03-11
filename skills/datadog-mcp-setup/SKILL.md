@@ -18,8 +18,9 @@ That file contains the URL for the Datadog MCP Server, which used the following 
 ## Steps to take if the MCP Server is Unavailable
 
 - **DO NOT ASK** the user to use the Datadog UI in the Browser: instead guide the user to fix the MCP Server.
-- Read the domain (i.e, `${DD_MCP_DOMAIN-<domain>}`) set on the `../../mcp.json` file.
-- Ask the user to confirm if the Datadog MCP Server is enabled and authenticated and if the domain read above is correct.
+- **Read the domain** (i.e, `${DD_MCP_DOMAIN-<domain>}`) set on the `../../mcp.json` file.
+- **DO NOT TRY** to reconnect automatically
+- **Ask the user** to confirm if the Datadog MCP Server is enabled and authenticated and if the domain read above is correct.
 
 Depending on the answer of the user, use one of the flows in the following sections.
 
@@ -31,7 +32,7 @@ Depending on the answer of the user, use one of the flows in the following secti
 
 ### Change the domain for the MCP Server
 
-To change the domain for the MCP Server, you MUST ask the user to provide which Datadog domain should be used. The valid domains are for each Datadog region are as follows:
+To change the domain for the MCP Server, you MUST ask the user to provide which Datadog domain should be used. **Show the valid domains to the user**:
 
 - us1: mcp.datadoghq.com
 - us3: mcp.us3.datadoghq.com
@@ -49,6 +50,7 @@ When the user provides the answer:
   - Example: if the correct domain is `mcp.us3.datadoghq.com`, you should replace `${DD_MCP_DOMAIN:-mcp.datadoghq.com}` by `${DD_MCP_DOMAIN:-mcp.us3.datadoghq.com}`. Notice that the current value may be not be `${DD_MCP_DOMAIN:-mcp.datadoghq.com}` if it was already customized, so make sure to only replace the default value and not the variable itself.
 
 After changing the domain, you must ask the user to:
+
 - Clear all MCP tokens by running the command "Cursor: Clear All MCP Tokens" in the Command Palette.
 - Restart Cursor by either closing and reopening it or by running the "Developer: Reload Window" command in the Command Palette.
 
