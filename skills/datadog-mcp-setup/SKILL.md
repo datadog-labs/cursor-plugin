@@ -71,9 +71,15 @@ Accept region in common forms (e.g. US1, US3, US5, EU1, AP1, AP2). Map to the co
 
 - **mcp.json:** Ensure the MCP config (e.g. workspace `.cursor/mcp.json`) uses the canonical form with **only** `DD_MCP_DOMAIN` — no other env vars, no hardcoded full URLs. Set the `datadog` server `url` to:
 
-  ```
-  https://${DD_MCP_DOMAIN:-mcp.datadoghq.com}/api/unstable/mcp-server/mcp?toolsets=core,visualizations
-  ```
+```json
+{
+  "mcpServers": {
+    "datadog": {
+      "url": "https://${DD_MCP_DOMAIN:-mcp.datadoghq.com}/api/unstable/mcp-server/mcp?toolsets=core,visualizations"
+    }
+  }
+}
+```
 
   If the file does not exist, create it with this structure. Preserve existing `mcpServers`; only add or update the `datadog` entry.
 
