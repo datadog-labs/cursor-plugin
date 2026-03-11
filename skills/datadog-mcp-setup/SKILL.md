@@ -3,8 +3,7 @@ name: datadog-mcp-setup
 description: REQUIRED environment setup to use the Datadog Plugin MCP
 ---
 
-The configuration for the MCP of the Datadog Plugin lives at:
-{HOME_DIR}/.cursor/plugins/cache/cursor-public/datadog/main/mcp.json
+The configuration for the MCP of the Datadog Plugin lives in the parent directory of this skills/ directory.
 
 By default, the URL contains ${DD_MCP_DOMAIN} as a template bar that must be customized for the user.
 
