@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "datadog": {
-      "url": "https://${DD_MCP_DOMAIN:-mcp.datadoghq.com}/api/unstable/mcp-server/mcp?toolsets=${DD_MCP_TOOLSET:-core,visualizations}"
+      "url": "https://${DD_MCP_DOMAIN:-mcp.datadoghq.com}/api/unstable/mcp-server/mcp?toolsets=core,visualizations"
     }
   }
 }
