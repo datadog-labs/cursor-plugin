@@ -31,11 +31,11 @@ Before prompting for region, check whether the Datadog MCP server is already con
 
 ### Step 2 – Prompt
 
-Ask the user which Datadog region they are in (e.g. US1, US3, EU1, AP1, AP2). Show the table above in your message so the user can pick by region code.
+Ask the user which Datadog region they are in (e.g. US1, US3, US5, EU1, AP1, AP2). Show the table above in your message so the user can pick by region code.
 
 ### Step 3 – Parse
 
-Accept region in common forms (e.g. us1, US1, us3, EU1). Map to the corresponding MCP domain from the table (e.g. us1 → `mcp.datadoghq.com`, us3 → `mcp.us3.datadoghq.com`).
+Accept region in common forms (e.g. US1, US3, US5, EU1, AP1, AP2). Map to the corresponding MCP domain from the table (e.g. us1 → `mcp.datadoghq.com`, us3 → `mcp.us3.datadoghq.com`).
 
 ### Step 4 – Use DD_MCP_DOMAIN only
 
