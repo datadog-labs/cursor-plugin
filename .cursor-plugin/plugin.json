@@ -7,18 +7,10 @@
   },
   "repository": "https://github.com/datadog-labs/cursor-plugin.git",
   "keywords": [
-    "ai",
-    "api",
     "datadog",
-    "mcp"
-  ],
-  "hooks": {
-    "sessionStart": [
-      {
-        "matcher": "startup",
-        "type": "command",
-        "command": "${CURSOR_PLUGIN_ROOT}/hooks/session-start.mjs"
-      }
-    ]
-  }
+    "infrastructure",
+    "mcp",
+    "observability",
+    "productivity"
+  ]
 }
