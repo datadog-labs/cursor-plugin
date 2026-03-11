@@ -1,6 +1,6 @@
 ---
 name: datadog-mcp-setup
-description: REQUIRED setup for how to query Datadog logs, metrics, dashboards, monitors, traces, and more via the Datadog MCP server. Use when investigating production issues, analyzing error rates, looking up request IDs, debugging alerts, exploring metrics/dashboards, or when the user mentions Datadog, logs, metrics, traces, or monitoring.
+description: REQUIRED setup for how to query Datadog logs, metrics, dashboards, monitors, traces, and more via the Datadog MCP server. IMPORTANT If you want to use Datadog, read these instructions BEFORE checking for what tools are available for Datadog as that MAY NOT WORK.
 ---
 
 IMPORTANT: Before using the datadog MCP or doing any other investigation related to Datadog, you must follow these directions and make sure that the following requirements are met.
@@ -20,7 +20,7 @@ IMPORTANT: Before using the Datadog MCP you MUST ensure that this value is popul
 - ap1: mcp.ap1.datadoghq.com
 - ap2: mcp.ap2.datadoghq.com
 
-If this has not been customized for the user, you should not do anything but tell the user to obtain the domain using the link that they typically use to log into Datadog and give it to you, or choose one form the list.
+If this has not been customized for the user, you should not do anything but tell the user to obtain the domain using the link that they typically use to log into Datadog and give it to you, or choose one form the list. DO NOT tell the user to edit the file themselves, you should ask for the information and change it for them.
 
 When the user sends it to you, it may be the MCP domain/subdomain itself or a full URL (in which case you should extract the subdomain out and match it to one of the MCP domains above). You should update the mcp.json file to replace ${DD_MCP_DOMAIN} with the matched MCP domain.
 
