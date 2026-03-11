@@ -3,7 +3,7 @@ name: datadog-mcp-setup
 description: REQUIRED if the Datadog MCP Server is not available. The Datadog MCP Server is used for investigating production issues, analyzing error rates, looking up request IDs, debugging alerts, exploring metrics/dashboards, or when the user mentions Datadog, logs, metrics, traces, or monitoring.
 ---
 
-IMPORTANT: If the Datadog MCP Server is not available when doing any other investigation related to Datadog, you must follow these directions and make sure that the following requirements are met.
+IMPORTANT: If the Datadog MCP Server is not available when doing any investigation related to Datadog, you must follow these directions and make sure that the MCP Server is available.
 
 ## Context
 
@@ -48,7 +48,10 @@ When the user provides the answer:
   - Do not remove the variable!
   - Example: if the correct domain is `mcp.us3.datadoghq.com`, you should replace `${DD_MCP_DOMAIN:-mcp.datadoghq.com}` by `${DD_MCP_DOMAIN:-mcp.us3.datadoghq.com}`. Notice that the current value may be not be `${DD_MCP_DOMAIN:-mcp.datadoghq.com}` if it was already customized, so make sure to only replace the default value and not the variable itself.
 
+After changing the domain, you must ask the user to:
+- Clear all MCP tokens by running the command "Cursor: Clear All MCP Tokens" in the Command Palette.
+- Restart Cursor by either closing and reopening it or by running the "Developer: Reload Window" command in the Command Palette.
+
 ## Important Notes (you MUST read this)
 
 - The flow described in the "Steps to take if the MCP Server is Unavailable" section also works if the user requests to change the domain for the MCP Server even if the MCP Server is currently available.
-- After changing the domain, the user may need to reauthenticate to the MCP Server. To do that the user needs to run the command "Cursor: Clear All MCP Tokens" in the Command Palette.
