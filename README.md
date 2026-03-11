@@ -32,6 +32,8 @@ Add the marketplace and install the plugin from Cursor Settings → Plugins:
 3. Install the `datadog` plugin
 4. You may need to restart Cursor after installing.
 
+**Next step:** Run the `datadog-mcp-setup` skill to select your Datadog region and configure the MCP URL (`DD_MCP_DOMAIN`).
+
 When Cursor is configured, the plugin opens your browser for Datadog OAuth using the `app.datadoghq.com` domain. Complete the sign-in to connect. See this troubleshooting [section](#wrong-datadog-domain-on-first-connection) if your organization uses a different site (US3, EU1, etc.) or a custom domain.
 
 ### Configure Datadog
