@@ -17,7 +17,11 @@ That file contains the URL for the Datadog MCP Server, which used the following 
 
 ## Steps to take if the MCP Server is Unavailable
 
-If the server is not available, the user needs to either view the MCP Server enablement and authentication state or change the domain for the MCP Server.
+- **DO NOT ASK** the user to use the Datadog UI in the Browser: instead guide the user to fix the MCP Server.
+- Read the domain (i.e, `${DD_MCP_DOMAIN-<domain>}`) set on the `../../mcp.json` file.
+- Ask the user to confirm if the Datadog MCP Server is enabled and authenticated and if the domain read above is correct.
+
+Depending on the answer of the user, use one of the flows in the following sections.
 
 ### View the MCP Server enablement and authentication state
 
