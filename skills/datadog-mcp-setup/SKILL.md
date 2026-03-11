@@ -1,29 +1,59 @@
 ---
 name: datadog-mcp-setup
-description: REQUIRED setup for how to query Datadog logs, metrics, dashboards, monitors, traces, and more via the Datadog MCP server. Use when investigating production issues, analyzing error rates, looking up request IDs, debugging alerts, exploring metrics/dashboards, or when the user mentions Datadog, logs, metrics, traces, or monitoring.
+description: REQUIRED if the Datadog MCP Server is not available. The Datadog MCP Server is used for investigating production issues, analyzing error rates, looking up request IDs, debugging alerts, exploring metrics/dashboards, or when the user mentions Datadog, logs, metrics, traces, or monitoring.
 ---
 
-IMPORTANT: Before using the datadog MCP or doing any other investigation related to Datadog, you must follow these directions and make sure that the following requirements are met.
+IMPORTANT: If the Datadog MCP Server is not available when doing any investigation related to Datadog, you must follow these directions and make sure that the MCP Server is available.
 
-### Context
+## Context
 
-The configuration for the MCP of the Datadog Plugin lives in the following directory relative to the path to this SKILL.md file: `../../mcp.json`
+The configuration for the MCP Server of the Datadog Plugin lives in the following directory relative to the path to this SKILL.md file: `../../mcp.json`.
 
-By default, the URL contains ${DD_SUBDOMAIN} as a template bar that must be customized for the user.
+That file contains the URL for the Datadog MCP Server, which used the following variables and defaults:
 
-IMPORTANT: Before using the Datadog MCP you MUST ensure that this value is populated. It can be one of the following, or a custom value: ['US1', 'US3', 'US5', 'EU1', 'AP1', 'AP2'].
+- `${DD_MCP_DOMAIN}`: The domain for the MCP server.
+  - When the plugin is installed, the domain is `mcp.datadoghq.com` as in `${DD_MCP_DOMAIN:-mcp.datadoghq.com}`.
+  - The domain may have been customize since installation.
 
-If this has not been customized for the user, you should not do anything but tell the user to obtain the subdomain using the link that they typically use to log into Datadog and give it to you.
+## Steps to take if the MCP Server is Unavailable
 
-When the user sends it to you, it may be the subdomain itself or a full URL (in which case you should extract the subdomain out). You should update the mcp.json file to replace ${DD_SUBDOMAIN} with the subdomain.
+- **DO NOT ASK** the user to use the Datadog UI in the Browser: instead guide the user to fix the MCP Server.
+- **Read the domain** (i.e, `${DD_MCP_DOMAIN-<domain>}`) set on the `../../mcp.json` file.
+- **DO NOT TRY** to reconnect automatically
+- **Ask the user** to confirm if the Datadog MCP Server is enabled and authenticated and if the domain read above is correct.
 
-After this you can use the Datadog MCP as usual.
+Depending on the answer of the user, use one of the flows in the following sections.
 
-### Steps
+### View the MCP Server enablement and authentication state
 
-Before continuing, take the following steps:
+- Ask the user to open the "Tools & MCP" section of the Cursor Settings. They can do that by clicking on the gear icon in the left sidebar and then on "Tools & MCP" in the dropdown menu or by running the "Cursor Settings: Tools & MCP" command in the Command Palette.
+- Once they are in the "Tools & MCP" section, the user should verify if the MCP Server is enabled and if they are authenticated. If the MCP Server is not enabled, they should enable it. If they are not authenticated, they should authenticate.
+- If the MCP Server is enabled, the user may need to reauthenticate if there are issues with the current authentication. To do that the user needs to run the command "Cursor: Clear All MCP Tokens" in the Command Palette.
 
-1. Read the mcp.json file using the path mentioned above (`../../mcp.json` relative to this SKILL.md file)
-2. If the URL contains the placeholder (${DD_SUBDOMAIN}) you should immediately prompt the user to provide you with the subdomain, explain to them how to find it, and offer to change it for them. If it does not, skip the remaining steps and continue your investigation. IMPORTANT: Do NOT continue to read files or check MCPs. It is CRUCIAL that you provide this information to the user so they can give you the correct value. You will not find it on your own.
-3. Once they provide you with the value, make the edit to the file. Let the user know that they need to turn the MCP server off and on again by going to Cursor Settings -> MCP.
-4. Continue on to using the Datadog MCP
+### Change the domain for the MCP Server
+
+To change the domain for the MCP Server, you MUST ask the user to provide which Datadog domain should be used. **Show the valid domains to the user**:
+
+- us1: mcp.datadoghq.com
+- us3: mcp.us3.datadoghq.com
+- us5: mcp.us5.datadoghq.com
+- eu1: mcp.datadoghq.eu
+- ap1: mcp.ap1.datadoghq.com
+- ap2: mcp.ap2.datadoghq.com
+
+When the user provides the answer:
+
+- Pick one of the valid domains provided above.
+  - IMPORTANT: **do not move forward** if the provided answer does not allow you to determine the correct domain. Go back to the user and ask them for clarification until you can determine the correct domain.
+- Once you have the correct domain, update the `../../mcp.json` file as follows replace **only** the default value of the DD_MCP_DOMAIN variable with the appropriate domain:
+  - Do not remove the variable!
+  - Example: if the correct domain is `mcp.us3.datadoghq.com`, you should replace `${DD_MCP_DOMAIN:-mcp.datadoghq.com}` by `${DD_MCP_DOMAIN:-mcp.us3.datadoghq.com}`. Notice that the current value may be not be `${DD_MCP_DOMAIN:-mcp.datadoghq.com}` if it was already customized, so make sure to only replace the default value and not the variable itself.
+
+After changing the domain, you must ask the user to:
+
+- Clear all MCP tokens by running the command "Cursor: Clear All MCP Tokens" in the Command Palette.
+- Restart Cursor by either closing and reopening it or by running the "Developer: Reload Window" command in the Command Palette.
+
+## Important Notes (you MUST read this)
+
+- The flow described in the "Steps to take if the MCP Server is Unavailable" section also works if the user requests to change the domain for the MCP Server even if the MCP Server is currently available.
