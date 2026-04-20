@@ -1,5 +1,3 @@
-**This plugin is currently in Preview.**
-
 # Datadog Cursor Plugin
 
 Query your Datadog data directly from Cursor using natural language. Ask about logs, metrics, traces, dashboards, monitors, and more.
