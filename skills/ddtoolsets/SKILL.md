@@ -5,7 +5,7 @@ allowed-tools: Read
 license: Apache-2.0
 metadata:
   author: Datadog
-  version: "0.7.2"
+  version: "0.7.3"
 ---
 
 ## Datadog MCP Server
@@ -87,13 +87,12 @@ ${DD_MCP_TOOLSETS:-core,alerting}  →  ${DD_MCP_TOOLSETS:-}
 
 ### 5. Confirm
 
-Tell the user the toolsets have been updated, showing which toolsets are now enabled.
+Tell the user the toolsets have been updated including which toolsets are now enabled, and that they need to follow these steps:
 
-The user needs to follow these steps:
-  1. Restart Cursor by:
-    - Opening the command palette (⌘⇧P on Mac or Ctrl+Shift+P on Windows/Linux - show the correct shortcut for the current operating system)
-    - Run the "Developer: Reload Window" command
-  2. After the restart, it may be necessary to re-authenticate the `datadog` MCP Server by:
-    - Opening the command palette and running the "Cursor Settings: Tools & MCP" command
-    - Authenticate the `datadog` MCP Server
+1. Restart Cursor by:
+   - Opening the command palette (⌘⇧P on Mac or Ctrl+Shift+P on Windows/Linux — show the correct shortcut for the current operating system)
+   - Run the "Developer: Reload Window" command
+2. After the restart, it may be necessary to re-authenticate the `datadog` MCP Server by:
+   - Opening the command palette and running the "Cursor Settings: Tools & MCP" command
+   - Authenticate the `datadog` MCP Server
 
