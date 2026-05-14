@@ -5,7 +5,7 @@ allowed-tools: Read
 license: Apache-2.0
 metadata:
   author: Datadog
-  version: "0.7.3"
+  version: "0.7.10"
 ---
 
 ## Datadog MCP Server
@@ -95,4 +95,3 @@ Tell the user the toolsets have been updated including which toolsets are now en
 2. After the restart, it may be necessary to re-authenticate the `datadog` MCP Server by:
    - Opening the command palette and running the "Cursor Settings: Tools & MCP" command
    - Authenticate the `datadog` MCP Server
-
