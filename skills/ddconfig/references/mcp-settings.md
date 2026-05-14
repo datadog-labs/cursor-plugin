@@ -92,4 +92,3 @@ When mapping user input:
 - **Domain not in the table** — confirm with the user, warning that an invalid domain will prevent connection.
 
 If the user is unsure which site they use, suggest checking https://docs.datadoghq.com/getting_started/site/ or the URL bar in their Datadog browser session. They can also contact `support@datadoghq.com` and ask about their Datadog MCP domain.
-

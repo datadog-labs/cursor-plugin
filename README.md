@@ -1,5 +1,3 @@
-**This plugin is currently in Preview.**
-
 # Datadog Cursor Plugin
 
 Query your Datadog data directly from Cursor using natural language. Ask about logs, metrics, traces, dashboards, monitors, and more.
@@ -16,10 +14,10 @@ If you already have the Datadog MCP server registered separately, disable or rem
 1. Open Cursor Settings by clicking on the gear icon in the left sidebar or by running the "Cursor Settings" command in the Command Palette.
 2. Go to the **Plugins** section
 3. Install the **datadog** plugin
+4. When prompted, pick your Datadog domain from the **Datadog Domain** dropdown (e.g. `mcp.datadoghq.com` for US1, `mcp.datadoghq.eu` for EU). The plugin uses this to connect to the right Datadog site.
+5. Restart Cursor, then authenticate the Datadog MCP server when prompted.
 
-Before you can start querying your Datadog data, you’ll need to connect the plugin to Datadog using your account. The setup process will guide you in selecting the correct Datadog MCP domain. After setup, restart Cursor and then complete authentication.
-
-> You can manually trigger setup by running the `/ddsetup` command in an agent chat window.
+> If you skipped the domain prompt, or want to change the domain later, run the `/ddsetup` command in an agent chat window. The agent will guide you through it.
 
 ## Using the plugin
 
@@ -72,10 +70,10 @@ The `DD_MCP_DOMAIN` value must be the MCP domain (e.g. `mcp.datadoghq.com`, `mcp
 
 The plugin uses environment variables with default values in its registration file. You can override these defaults by setting the environment variables directly:
 
-- `DD_MCP_DOMAIN` — overrides the Datadog MCP domain. If set, the plugin uses this value regardless of what `/ddsetup` or `/ddconfig` configured. Useful for non-standard environments or key authentication.
+- `DD_MCP_DOMAIN` — the Datadog MCP domain. This is the same value you pick from the **Datadog Domain** dropdown when installing the plugin; Cursor sets it for you. You can also set it manually in your shell for non-standard environments or key authentication.
 - `DD_MCP_TOOLSETS` — overrides the enabled toolsets (comma-separated). If set, the plugin uses this value regardless of what `/ddtoolsets` configured.
 
-When environment variables are set, `/ddsetup`, `/ddconfig`, and `/ddtoolsets` still edit the default values in the registration file, but those defaults won't take effect until the environment variables are removed.
+When environment variables are set, `/ddsetup`, `/ddconfig`, and `/ddtoolsets` still edit the default values in the registration file, but those defaults won't take effect until the environment variables are removed. In particular, to make `/ddsetup` or `/ddconfig` drive the domain, clear the **Datadog Domain** value in the plugin's settings first.
 
 ## Good to know
 

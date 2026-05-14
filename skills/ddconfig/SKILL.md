@@ -5,7 +5,7 @@ allowed-tools: Read
 license: Apache-2.0
 metadata:
   author: Datadog
-  version: "0.7.3"
+  version: "0.7.10"
 ---
 
 ## Datadog MCP Server
@@ -88,4 +88,3 @@ Ask the user if they want to use an organization on the same domain or on a diff
 
 - If on a different domain:
   - Run the [Domain Flow](#domain-flow) telling the user to choose the target organization in the browser during sign-in.
-
