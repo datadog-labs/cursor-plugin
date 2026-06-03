@@ -1,6 +1,6 @@
 {
   "name": "datadog",
-  "version": "0.7.11",
+  "version": "0.7.13",
   "description": "Use Datadog directly in Cursor through a preconfigured Datadog MCP server. Query logs, metrics, traces, dashboards, and more through natural conversation. This plugin is in preview.",
   "author": {
     "name": "Datadog"
@@ -13,6 +13,7 @@
     "observability",
     "productivity"
   ],
+  "mcpServers": "./.dd_cursor_mcp.json",
   "variables": {
     "type": "object",
     "properties": {
