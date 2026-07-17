@@ -62,15 +62,25 @@ Clearing the toolset list back to server defaults:
 ${DD_MCP_TOOLSETS:-core,alerting}  →  ${DD_MCP_TOOLSETS:-}
 ```
 
-### The `not-setup` sentinel
+### The default domain
 
-A fresh installation has `not-setup` as the default domain:
+Fresh installations default to the US1 MCP domain:
+
+```
+${DD_MCP_DOMAIN:-mcp.datadoghq.com}
+```
+
+This allows OAuth discovery to start even when Cursor has not yet injected a plugin variable (for example in Cursor web Automations). Users on other Datadog sites should pick the correct domain during install or run `/ddconfig` to switch.
+
+### Legacy `not-setup` sentinel
+
+Older plugin versions used `not-setup` as the default domain:
 
 ```
 ${DD_MCP_DOMAIN:-not-setup}
 ```
 
-This value prevents the MCP server from connecting. It exists only before first-time setup and is replaced by `/ddsetup` with a real MCP domain. Once replaced, it never returns to `not-setup`.
+If the registration file still contains `not-setup`, treat `datadog-server-state` as **not-setup** and replace it with the user's MCP domain.
 
 ## Site-to-domain mapping
 

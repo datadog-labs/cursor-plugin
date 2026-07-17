@@ -47,9 +47,9 @@ Follow these steps in order:
 
    Follow the "Stay on script" rule in `mcp-settings.md`. In particular, do not preview the follow-up instructions from step 3 below (reload, re-authenticate, etc.) — that step emits them verbatim at the right moment.
 
-2. **Apply the change.** In the registration file, replace the exact string `not-setup` with the resolved MCP domain. Follow the editing rule in `mcp-settings.md`.
+2. **Apply the change.** In the registration file, replace the exact string `not-setup` with the resolved MCP domain, or update the default domain if the file already uses the current template. Follow the editing rule in `mcp-settings.md`.
 
-   Before:
+   Before (legacy):
 
    ```
    ${DD_MCP_DOMAIN:-not-setup}
