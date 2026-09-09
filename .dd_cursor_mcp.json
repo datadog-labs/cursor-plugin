@@ -1,10 +1,13 @@
 {
   "mcpServers": {
     "datadog": {
-      "url": "https://${DD_MCP_DOMAIN:-not-setup}/v1/mcp?referrer_ide=cursor-plugin&plugin_version=0.7.14&toolsets=${DD_MCP_TOOLSETS:-core,visualizations}",
+      "url": "https://${DD_MCP_DOMAIN:-not-setup}/v1/mcp",
       "headers": {
         "DD_API_KEY": "${DD_API_KEY}",
-        "DD_APPLICATION_KEY": "${DD_APPLICATION_KEY}"
+        "DD_APPLICATION_KEY": "${DD_APPLICATION_KEY}",
+        "X-Datadog-MCP-Referrer-Name": "cursor-plugin",
+        "X-Datadog-MCP-Referrer-Version": "0.7.19",
+        "X-Datadog-MCP-Toolsets": "${DD_MCP_TOOLSETS:-core,visualizations}"
       }
     }
   }

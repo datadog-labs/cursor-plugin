@@ -1,6 +1,6 @@
 {
   "name": "datadog",
-  "version": "0.7.14",
+  "version": "0.7.19",
   "description": "Use Datadog directly in Cursor through a preconfigured Datadog MCP server. Query logs, metrics, traces, dashboards, and more through natural conversation. This plugin is in preview.",
   "author": {
     "name": "Datadog"
@@ -27,7 +27,8 @@
           "mcp.us5.datadoghq.com",
           "mcp.datadoghq.eu",
           "mcp.ap1.datadoghq.com",
-          "mcp.ap2.datadoghq.com"
+          "mcp.ap2.datadoghq.com",
+          "mcp.uk1.datadoghq.com"
         ]
       }
     },
