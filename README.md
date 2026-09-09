@@ -11,7 +11,7 @@ Query your Datadog data directly from Cursor using natural language. Ask about l
 
 If you already have the Datadog MCP server registered separately, disable or remove it first to avoid conflicts.
 
-1. Open Cursor Settings by clicking on the gear icon in the left sidebar or by running the "Cursor Settings" command in the Command Palette.
+1. Open the **Customize** tab by clicking on the gear icon in the left sidebar or by running the "Open Customize" action in the Command Palette.
 2. Go to the **Plugins** section
 3. Install the **datadog** plugin
 4. When prompted, pick your Datadog domain from the **Datadog Domain** dropdown (e.g. `mcp.datadoghq.com` for US1, `mcp.datadoghq.eu` for EU). The plugin uses this to connect to the right Datadog site.
@@ -24,7 +24,7 @@ If you already have the Datadog MCP server registered separately, disable or rem
 Once connected, just ask the agent anything about your Datadog data:
 
 ```
-Show me error logs from the last hour
+Show me error logs for the "checkout" service from the last hour
 ```
 
 ```
